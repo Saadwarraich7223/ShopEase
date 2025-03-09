@@ -1,9 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import cartReducer from "./cartReducer";
-import productReducer from "./productReducer";
-import wishListReducer from "./wishListreducer";
-import searchReducer from "./searchReducer";
+import cartReducer from "./cartReducer.js";
+import productReducer from "./productReducer.js";
+import wishListReducer from "./wishListReducer.js";
+import searchReducer from "./searchReducer.js";
 
 const reducer = combineReducers({
   productsList: productReducer,
