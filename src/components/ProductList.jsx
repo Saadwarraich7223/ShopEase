@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Star, Heart, ShoppingBag, ShoppingCart } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { cartAdditem } from "../store/cartReducer";
-import { wishListAddItem } from "../store/wishListreducer";
+import { wishListAddItem } from "../store/wishListReducer";
 import NoResultsFound from "./NoResultsFound";
 import { useNavigate } from "react-router-dom";
 

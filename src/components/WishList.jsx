@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Star, X, ShoppingCart, Heart } from "lucide-react";
-import { wishListRemoveItem } from "../store/wishListreducer";
+import { wishListRemoveItem } from "../store/wishListReducer";
 import { cartAdditem } from "../store/cartReducer";
 import { Link } from "react-router-dom";
 
