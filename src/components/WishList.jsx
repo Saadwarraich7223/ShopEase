@@ -44,12 +44,7 @@ const WishList = () => {
       </div>
 
       {wishlistItems && wishlistItems.length === 0 ? (
-        <div className="flex flex-col items-center justify-center py-12 bg-white rounded-lg shadow-sm">
-          <img
-            src="/api/placeholder/200/200"
-            alt="Empty wishlist"
-            className="mb-6 opacity-50"
-          />
+        <div className="flex flex-col items-center justify-center px-4 py-12 bg-white rounded-lg text-center shadow-2xl">
           <h2 className="text-2xl font-medium text-gray-600 mb-2">
             Your wishlist is empty
           </h2>
