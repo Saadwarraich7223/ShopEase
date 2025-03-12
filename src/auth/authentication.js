@@ -15,13 +15,13 @@ class AuthService {
     try {
       const userAccount = await this.account.create(
         ID.unique(),
-        name,
         email,
-        password
+        password,
+        name
       );
 
       if (userAccount) {
-        return this.lgoin({ email, password });
+        return this.login({ email, password });
       } else {
         return userAccount;
       }
@@ -30,11 +30,12 @@ class AuthService {
       throw error;
     }
   }
-  async lgoin({ email, password }) {
+  async login({ email, password }) {
     try {
       return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
-      console.error("Error creating account:", error.message);
+      console.error("Error logging in:", error.message);
+
       throw error;
     }
   }
@@ -51,7 +52,7 @@ class AuthService {
     try {
       await this.account.deleteSessions();
     } catch (error) {
-      console.error("Error creating account:", error.message);
+      console.error("Error logging out account:", error.message);
       throw error;
     }
   }

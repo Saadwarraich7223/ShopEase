@@ -10,8 +10,11 @@ import {
   LogOut,
 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setSearchQuery } from "../store/searchReducer";
+import PopupMenu from "./PopupMenu";
+import authService from "../auth/authentication";
+import { logout } from "../store/authReducer";
 
 const Navbar = () => {
   const { status } = useSelector((state) => state.auth);
@@ -19,8 +22,11 @@ const Navbar = () => {
   const searchQuery = useSelector((state) => state.searchQuery);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const location = useLocation();
 
   const toggleMenu = () => {
@@ -34,6 +40,14 @@ const Navbar = () => {
 
   // Function to close mobile menu when nav link is clicked
   const handleNavLinkClick = () => {
+    setIsMenuOpen(false);
+    setProfileMenuOpen(false);
+  };
+  const handleSignoutPopup = () => {
+    authService
+      .logout()
+      .then(() => dispatch(logout()))
+      .then(() => navigate("/"));
     setIsMenuOpen(false);
     setProfileMenuOpen(false);
   };
@@ -187,13 +201,12 @@ const Navbar = () => {
                         Settings
                       </Link>
                       <div className="border-t border-gray-100 my-1"></div>
-                      <Link
-                        to="/signout"
-                        className=" px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center"
-                        onClick={() => setProfileMenuOpen(false)}
+                      <button
+                        className=" px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center cursor-pointer"
+                        onClick={() => handleSignoutPopup()}
                       >
                         <LogOut className="h-4 w-4 mr-2" /> Sign out
-                      </Link>
+                      </button>
                     </>
                   ) : (
                     <>
@@ -262,7 +275,6 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-
       {/* Mobile menu with animation */}
       <div
         className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
@@ -382,19 +394,18 @@ const Navbar = () => {
               >
                 Your Orders
               </Link>
+              <button
+                className="px-3 py-2 block rounded-md text-base font-medium text-red-500 hover:bg-red-50 flex items-center"
+                onClick={() => handleSignoutPopup()}
+              >
+                <LogOut className="h-5 w-5 mr-2" /> Sign out
+              </button>
               <Link
                 to="/settings"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-indigo-600"
                 onClick={handleNavLinkClick}
               >
                 Settings
-              </Link>
-              <Link
-                to="/signout"
-                className="block px-3 py-2 rounded-md text-base font-medium text-red-500 hover:bg-red-50 flex items-center"
-                onClick={handleNavLinkClick}
-              >
-                <LogOut className="h-5 w-5 mr-2" /> Sign out
               </Link>
             </div>
           </div>

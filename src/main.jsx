@@ -5,6 +5,7 @@ import App from "./App.jsx";
 import { Provider } from "react-redux";
 import { store } from "./store/store.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Protected from "./components/Protected.jsx";
 
 const Home = lazy(() => import("./components/Home.jsx"));
 const ProductList = lazy(() => import("./components/ProductList.jsx"));
@@ -29,27 +30,51 @@ const router = createBrowserRouter([
       },
       {
         path: "/products",
-        element: <ProductList />,
+        element: (
+          <Protected>
+            <ProductList />
+          </Protected>
+        ),
       },
       {
         path: "/product/:id",
-        element: <ProductDetails />,
+        element: (
+          <Protected>
+            <ProductDetails />
+          </Protected>
+        ),
       },
       {
         path: "/cart",
-        element: <Cart />,
+        element: (
+          <Protected>
+            <Cart />
+          </Protected>
+        ),
       },
       {
         path: "/wishlist",
-        element: <WishList />,
+        element: (
+          <Protected>
+            <WishList />
+          </Protected>
+        ),
       },
       {
         path: "/signup",
-        element: <Signup />,
+        element: (
+          <Protected authentication={false}>
+            <Signup />
+          </Protected>
+        ),
       },
       {
         path: "/signin",
-        element: <Signin />,
+        element: (
+          <Protected authentication={false}>
+            <Signin />
+          </Protected>
+        ),
       },
     ],
   },

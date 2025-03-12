@@ -16,19 +16,18 @@ const Signup = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
+    setFormData((prev) => {
+      const newState = { ...prev, [name]: value };
+      return newState;
     });
   };
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
     authService
       .createAccount({ ...formData })
       .then((res) => dispatch(login({ res })))
       .then(() => navigate("/"));
-
-    console.log(formData);
   };
 
   return (

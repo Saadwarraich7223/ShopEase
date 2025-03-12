@@ -24,7 +24,7 @@ const Signin = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     authService
-      .lgoin({ ...formData })
+      .login({ ...formData })
       .then((res) => dispatch(login({ res })))
       .then(() => navigate("/"));
   };
@@ -173,9 +173,7 @@ const Signin = () => {
                 id="email"
                 name="email"
                 value={formData.email}
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
+                onChange={handleChange}
                 className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
                 placeholder="john.doe@example.com"
                 required
@@ -203,9 +201,7 @@ const Signin = () => {
                   id="password"
                   name="password"
                   value={formData.password}
-                  onChange={(e) =>
-                    setFormData({ ...formData, password: e.target.value })
-                  }
+                  onChange={handleChange}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors"
                   placeholder="••••••••"
                   required
