@@ -11,6 +11,8 @@ const ProductList = lazy(() => import("./components/ProductList.jsx"));
 const Cart = lazy(() => import("./components/Cart.jsx"));
 const WishList = lazy(() => import("./components/WishList.jsx"));
 const ProductDetails = lazy(() => import("./components/ProductDetails.jsx"));
+const Signup = lazy(() => import("./components/Signup.jsx"));
+const Signin = lazy(() => import("./components/Signin.jsx"));
 
 const router = createBrowserRouter([
   {
@@ -40,6 +42,14 @@ const router = createBrowserRouter([
       {
         path: "/wishlist",
         element: <WishList />,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
+      },
+      {
+        path: "/signin",
+        element: <Signin />,
       },
     ],
   },
