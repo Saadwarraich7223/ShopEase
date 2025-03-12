@@ -59,8 +59,7 @@ const Home = () => {
     },
     {
       name: "Accessories",
-      image:
-        "https://cdn.pixabay.com/photo/2018/03/07/18/19/watches-3207533_960_720.jpg",
+      image: "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
     },
   ];
 
@@ -76,8 +75,7 @@ const Home = () => {
       name: "Casual Summer Dress",
       price: 59.99,
       rating: 4.6,
-      image:
-        "https://images.unsplash.com/photo-1623609163859-ca93c959b5b8?q=80&w=400&auto=format&fit=crop",
+      image: "https://fakestoreapi.com/img/61pHAEJ4NML._AC_UX679_.jpg",
     },
     {
       name: "Designer Sunglasses",
