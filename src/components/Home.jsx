@@ -10,12 +10,14 @@ import {
   User,
   Heart,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
-
+  const { status } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
   const heroSlides = [
     {
       image:
@@ -93,6 +95,10 @@ const Home = () => {
     },
   ];
 
+  const handleClick = () => {
+    status ? navigate("/products") : navigate("/signup");
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) =>
@@ -126,7 +132,10 @@ const Home = () => {
               <p className="text-xl text-white mb-8 max-w-2xl">
                 {slide.description}
               </p>
-              <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full flex items-center transition duration-300">
+              <button
+                className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full flex items-center transition duration-300"
+                onClick={handleClick}
+              >
                 {slide.ctaText} <ArrowRight size={20} className="ml-2" />
               </button>
             </div>
@@ -261,8 +270,11 @@ const Home = () => {
                 payment options.
               </p>
             </div>
-            <Link to={"/products"}>
-              <button className="bg-white cursor-pointer hover:bg-gray-100 text-indigo-600 font-bold py-3 px-8 rounded-full shadow-lg transform transition duration-300 hover:scale-105">
+            <Link>
+              <button
+                className="bg-white cursor-pointer hover:bg-gray-100 text-indigo-600 font-bold py-3 px-8 rounded-full shadow-lg transform transition duration-300 hover:scale-105"
+                onClick={handleClick}
+              >
                 Shop All Products
               </button>
             </Link>
