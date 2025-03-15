@@ -388,7 +388,6 @@ const Navbar = () => {
                 Your Profile
               </Link>
               <Link
-                to="/orders"
                 className="block px-3 py-2 rounded-md text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-indigo-600"
                 onClick={handleNavLinkClick}
               >

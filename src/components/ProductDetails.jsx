@@ -48,8 +48,8 @@ const ProductDetails = () => {
     );
   }
 
-  const handleAddToCart = (id) => {
-    dispatch(cartAdditem(id, quantity));
+  const handleAddToCart = (product) => {
+    dispatch(cartAdditem(product, quantity));
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
   };
@@ -226,7 +226,7 @@ const ProductDetails = () => {
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
               <button
-                onClick={() => handleAddToCart(product.id)}
+                onClick={() => handleAddToCart(product)}
                 className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-6 rounded-lg transition duration-200 flex items-center justify-center"
               >
                 <ShoppingCart className="h-5 w-5 mr-2" />
