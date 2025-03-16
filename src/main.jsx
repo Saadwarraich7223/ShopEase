@@ -19,11 +19,7 @@ const Signin = lazy(() => import("./components/Signin.jsx"));
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <Provider store={store}>
-        <App />
-      </Provider>
-    ),
+    element: <App />,
     children: [
       {
         path: "/",
@@ -91,6 +87,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router}></RouterProvider>
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </StrictMode>
 );

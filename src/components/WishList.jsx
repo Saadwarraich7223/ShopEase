@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Star, X, ShoppingCart, Heart, Check } from "lucide-react";
-import { wishListRemoveItem } from "../store/wishListReducer";
+import { wishListRemoveItem } from "../store/wishListSlice";
 import { cartAdditem } from "../store/cartSlice";
 import { Link } from "react-router-dom";
 
 const WishList = () => {
   const dispatch = useDispatch();
-  const wishlistItems = useSelector((state) => state.wishList);
+  const wishlistItems = useSelector((state) => state.MyWishList.wishList);
+
   const [showToast, setShowToast] = useState(false);
 
   const handleRemoveFromWishlist = (id) => {

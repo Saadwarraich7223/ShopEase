@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 
 import { cartAdditem } from "../store/cartSlice";
-import { wishListAddItem } from "../store/wishListReducer";
+import { wishListAddItem } from "../store/wishListSlice";
 
 const ProductDetails = () => {
   const { id } = useParams();
