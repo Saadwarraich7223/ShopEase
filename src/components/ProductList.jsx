@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Star, Heart, ShoppingBag, ShoppingCart } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import { cartAdditem } from "../store/cartReducer";
+import { cartAdditem } from "../store/cartSlice";
 import { wishListAddItem } from "../store/wishListReducer";
 import NoResultsFound from "./NoResultsFound";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const ProductList = () => {
   const products = useSelector((state) => state.productsList);
   const wishList = useSelector((state) => state.wishList);
-  const cart = useSelector((state) => state.cartItems);
+  const cart = useSelector((state) => state.cartItems.cart);
   const searchQuery = useSelector((state) => state.searchQuery);
 
   const navigate = useNavigate();

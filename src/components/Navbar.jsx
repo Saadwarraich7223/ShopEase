@@ -18,7 +18,7 @@ import { logout } from "../store/authReducer";
 
 const Navbar = () => {
   const { status } = useSelector((state) => state.auth);
-  const cartItems = useSelector((state) => state.cartItems);
+  const cartItems = useSelector((state) => state.cartItems.cart);
   const searchQuery = useSelector((state) => state.searchQuery);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);

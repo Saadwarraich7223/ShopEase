@@ -14,10 +14,10 @@ import {
   cartDecreaseQuantity,
   cartIncreaseQuantity,
   cartRemoveItem,
-} from "../store/cartReducer";
+} from "../store/cartSlice";
 
 const Cart = () => {
-  const cartItems = useSelector((state) => state.cartItems);
+  const cartItems = useSelector((state) => state.cartItems.cart);
   const dispatch = useDispatch();
 
   const [orderSummary, setOrderSummary] = useState({

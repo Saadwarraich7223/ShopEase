@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { Star, X, ShoppingCart, Heart } from "lucide-react";
+import { Star, X, ShoppingCart, Heart, Check } from "lucide-react";
 import { wishListRemoveItem } from "../store/wishListReducer";
-import { cartAdditem } from "../store/cartReducer";
+import { cartAdditem } from "../store/cartSlice";
 import { Link } from "react-router-dom";
 
 const WishList = () => {
   const dispatch = useDispatch();
   const wishlistItems = useSelector((state) => state.wishList);
+  const [showToast, setShowToast] = useState(false);
 
   const handleRemoveFromWishlist = (id) => {
     dispatch(wishListRemoveItem(id));
@@ -16,6 +17,11 @@ const WishList = () => {
 
   const handleAddToCart = (item) => {
     dispatch(cartAdditem(item));
+    setShowToast(true);
+
+    setTimeout(() => {
+      setShowToast(false);
+    }, 2000);
   };
 
   // Function to render star ratings
@@ -38,6 +44,13 @@ const WishList = () => {
 
   return (
     <div className="container mx-auto px-4 py-8 bg-gray-50">
+      {/* Toast notification */}
+      {showToast && (
+        <div className="fixed top-20 right-5 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg flex items-center z-50 animate-fade-in-down">
+          <Check className="h-5 w-5 mr-2" />
+          <p>Product added to cart successfully!</p>
+        </div>
+      )}
       <div className="flex gap-4 items-center mb-8">
         <h1 className="text-3xl font-bold text-gray-800">My Wishlist</h1>
         <Heart className="text-red-500 mr-2 h-6 w-6" fill="currentColor" />

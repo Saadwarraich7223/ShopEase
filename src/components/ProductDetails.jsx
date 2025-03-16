@@ -12,7 +12,7 @@ import {
   RotateCcw,
 } from "lucide-react";
 
-import { cartAdditem } from "../store/cartReducer";
+import { cartAdditem } from "../store/cartSlice";
 import { wishListAddItem } from "../store/wishListReducer";
 
 const ProductDetails = () => {
