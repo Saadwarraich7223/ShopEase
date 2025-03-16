@@ -233,7 +233,7 @@ const Cart = () => {
                         type="text"
                         id="promo"
                         placeholder="Enter code"
-                        className="flex-grow rounded-l-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 px-4 py-2 border"
+                        className="flex-grow min-w-2.5 rounded-l-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 px-2 py-2 border"
                         value={promoCode}
                         onChange={(e) => setPromoCode(e.target.value)}
                         disabled={promoApplied}

@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import authService from "./auth/authentication";
 import { login, logout } from "./store/authReducer";
 import Loader from "./components/Loader";
@@ -30,7 +30,9 @@ function App() {
     <>
       <Navbar />
       <div className="pt-15">
-        <Outlet />
+        <Suspense fallback={<Loader />}>
+          <Outlet />
+        </Suspense>
       </div>
       <Footer />
     </>
