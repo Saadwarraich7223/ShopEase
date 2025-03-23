@@ -1,0 +1,12 @@
+@keyframes shrink {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+.shrink-animation {
+  animation: shrink 5000ms linear forwards;
+}

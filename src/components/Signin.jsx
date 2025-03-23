@@ -3,12 +3,16 @@ import { Link, useNavigate } from "react-router-dom";
 import authService from "../auth/authentication";
 import { useDispatch } from "react-redux";
 import { login } from "../store/authSlice";
+import { Check, Cross, X, XCircle } from "lucide-react";
+import ToastNotification from "./ToastNotification";
+import { hideNotification, showNotification } from "../store/notificationSlice";
 
 const Signin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -21,12 +25,34 @@ const Signin = () => {
       [name]: value,
     });
   };
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
-    authService
-      .login({ ...formData })
-      .then((res) => dispatch(login({ res })))
-      .then(() => navigate("/"));
+    setError("");
+    try {
+      const res = await authService.login({ ...formData });
+      if (res.error) {
+        setError(res.error);
+
+        setTimeout(() => {
+          setError("");
+        }, 3000);
+      } else {
+        dispatch(login({ res }));
+        dispatch(showNotification("You have been logged in successfully!"));
+
+        setTimeout(() => {
+          dispatch(hideNotification());
+          navigate("/");
+        }, 4000);
+      }
+    } catch (error) {
+      setError("Login failed. Please try again.");
+    }
+
+    // authService
+    //   .login({ ...formData })
+    //   .then((res) => dispatch(login({ res })))
+    //   .then(() => navigate("/"));
   };
 
   return (
@@ -342,6 +368,13 @@ const Signin = () => {
           </div>
         </div>
       </div>
+      {error && (
+        <ToastNotification
+          message={error}
+          bgColor="bg-red-500"
+          Icon={XCircle}
+        />
+      )}
     </div>
   );
 };

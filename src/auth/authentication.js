@@ -27,7 +27,7 @@ class AuthService {
       }
     } catch (error) {
       console.error("Error creating account:", error.message);
-      throw error;
+      return { error: error.message };
     }
   }
   async login({ email, password }) {
@@ -35,8 +35,7 @@ class AuthService {
       return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
       console.error("Error logging in:", error.message);
-
-      throw error;
+      return { error: error.message };
     }
   }
 

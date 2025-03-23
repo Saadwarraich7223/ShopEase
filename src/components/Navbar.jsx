@@ -8,21 +8,22 @@ import {
   LogIn,
   UserPlus,
   LogOut,
+  Check,
 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setSearchQuery } from "../store/searchReducer";
-import PopupMenu from "./PopupMenu";
 import authService from "../auth/authentication";
 import { logout } from "../store/authSlice";
+import { hideNotification, showNotification } from "../store/notificationSlice";
 
 const Navbar = () => {
   const { status } = useSelector((state) => state.auth);
   const cartItems = useSelector((state) => state.cartItems.cart);
   const searchQuery = useSelector((state) => state.searchQuery);
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -44,10 +45,14 @@ const Navbar = () => {
     setProfileMenuOpen(false);
   };
   const handleSignoutPopup = () => {
-    authService
-      .logout()
-      .then(() => dispatch(logout()))
-      .then(() => navigate("/"));
+    authService.logout().then(() => {
+      dispatch(logout());
+      dispatch(showNotification("You have been logged out !"));
+    });
+    setTimeout(() => {
+      dispatch(hideNotification());
+      navigate("/");
+    }, 4000);
     setIsMenuOpen(false);
     setProfileMenuOpen(false);
   };

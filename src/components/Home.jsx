@@ -5,13 +5,20 @@ import {
   Star,
   ChevronRight,
   Heart,
+  Check,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import ToastNotification from "./ToastNotification";
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { status } = useSelector((state) => state.auth);
+
+  const notification = true;
+
+  const { message, visible } = useSelector((state) => state.notification);
+
   const navigate = useNavigate();
   const heroSlides = [
     {
@@ -374,6 +381,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+      {visible && <ToastNotification message={message} />}
     </div>
   );
 };
