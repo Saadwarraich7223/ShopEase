@@ -4,17 +4,12 @@ import {
   ArrowRight,
   Star,
   ChevronRight,
-  Search,
-  Menu,
-  X,
-  User,
   Heart,
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Home = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const { status } = useSelector((state) => state.auth);
   const navigate = useNavigate();
