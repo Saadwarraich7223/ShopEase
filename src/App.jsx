@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 import { useDispatch } from "react-redux";
 import { Suspense, useEffect, useState } from "react";
 import authService from "./auth/authentication";
-import { login, logout } from "./store/authReducer";
+import { login, logout } from "./store/authSlice";
 import Loader from "./components/Loader";
 
 function App() {

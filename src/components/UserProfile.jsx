@@ -10,10 +10,13 @@ import {
 import authService from "../auth/authentication";
 import Loader from "./Loader";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { logout } from "../store/authReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../store/authSlice";
 
 const UserProfile = () => {
+  const cartItems = useSelector((state) => state.cartItems.cart);
+  const myWishList = useSelector((state) => state.MyWishList.wishList);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -129,10 +132,10 @@ const UserProfile = () => {
               <div className="flex justify-between items-start">
                 <div>
                   <p className="text-xs sm:text-sm text-teal-600 font-medium">
-                    Orders
+                    In Cart
                   </p>
                   <p className="text-xl sm:text-2xl font-bold text-gray-800">
-                    8
+                    {cartItems.length}
                   </p>
                 </div>
                 <ShoppingCart className="text-teal-400" size={20} />
@@ -142,10 +145,10 @@ const UserProfile = () => {
               <div className="flex justify-between items-start">
                 <div>
                   <p className="text-xs sm:text-sm text-teal-600 font-medium">
-                    In Delivery
+                    In WishList
                   </p>
                   <p className="text-xl sm:text-2xl font-bold text-gray-800">
-                    2
+                    {myWishList.length}
                   </p>
                 </div>
                 <Package className="text-teal-400" size={20} />

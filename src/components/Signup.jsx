@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import authService from "../auth/authentication";
 import { useDispatch } from "react-redux";
-import { login } from "../store/authReducer";
+import { login } from "../store/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {

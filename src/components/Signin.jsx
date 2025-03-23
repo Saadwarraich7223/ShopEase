@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authService from "../auth/authentication";
 import { useDispatch } from "react-redux";
-import { login } from "../store/authReducer";
+import { login } from "../store/authSlice";
 
 const Signin = () => {
   const dispatch = useDispatch();

@@ -14,7 +14,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { setSearchQuery } from "../store/searchReducer";
 import PopupMenu from "./PopupMenu";
 import authService from "../auth/authentication";
-import { logout } from "../store/authReducer";
+import { logout } from "../store/authSlice";
 
 const Navbar = () => {
   const { status } = useSelector((state) => state.auth);
